@@ -15,7 +15,7 @@ object NewsModel: Table("news") {
         transaction {
             NewsModel.insert {
                 it[title] = newsDTO.title
-                it[content] = newsDTO.descrition
+                it[content] = newsDTO.content
                 it[author] = newsDTO.author
                 it[dateTime] = newsDTO.dateTime
             }
@@ -32,7 +32,7 @@ object NewsModel: Table("news") {
                     newsList.add(
                         NewsDTO(
                             title = it[title],
-                            descrition = it[content],
+                            content = it[content],
                             author = it[author],
                             dateTime = it[dateTime]
                         )
