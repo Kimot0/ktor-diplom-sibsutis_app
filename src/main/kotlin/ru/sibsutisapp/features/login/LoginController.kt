@@ -19,10 +19,25 @@ class LoginController(private val call: ApplicationCall) {
             if (userDTO.password == receive.password) {
                 val sendGroup: String = userDTO.groupID
                 val role: String = userDTO.role
-                call.respond(LoginResponseRemote(group = sendGroup, role = role))
+                val fio:String = userDTO.fio
+                call.respond(LoginResponseRemote(group = sendGroup, role = role,fio = fio))
             } else {
                 call.respond(HttpStatusCode.BadRequest, "Invalid password")
             }
         }
+    }
+
+    suspend fun getUsers(){
+        val receive = call.receive<UsersReceiveRemote>()
+        val userDtoList = UsersModel.fetchUserByGroup(receive.group)
+        val usersFioList:MutableList<UsersResponseRemote> = mutableListOf()
+        userDtoList.forEach {
+            usersFioList.add(
+                UsersResponseRemote(
+                    it.fio
+                )
+            )
+        }
+        call.respond(usersFioList)
     }
 }
