@@ -6,6 +6,7 @@ import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object NewsModel: Table("news") {
+    private val id = NewsModel.integer("id")
     private val title = NewsModel.varchar("title",50)
     private val content = NewsModel.varchar("content",250)
     private val author = NewsModel.varchar("author",40)
@@ -14,6 +15,7 @@ object NewsModel: Table("news") {
     fun insert(newsDTO: NewsDTO) {
         transaction {
             NewsModel.insert {
+                it[id] = newsDTO.id
                 it[title] = newsDTO.title
                 it[content] = newsDTO.content
                 it[author] = newsDTO.author
@@ -31,6 +33,7 @@ object NewsModel: Table("news") {
                 newsModel.forEach{
                     newsList.add(
                         NewsDTO(
+                            id = it[NewsModel.id],
                             title = it[title],
                             content = it[content],
                             author = it[author],

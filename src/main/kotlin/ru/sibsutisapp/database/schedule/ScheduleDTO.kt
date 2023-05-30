@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class ScheduleDTO(
+    val id:String,
     val dayOfWeek: String,
     val groupID: String,
     val subjectName: String,
