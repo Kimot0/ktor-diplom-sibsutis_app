@@ -11,6 +11,7 @@ object UsersModel: Table("users") {
     private val password = UsersModel.varchar("password",25)
     private val groupID = UsersModel.varchar("groupID",25)
     private val role = UsersModel.varchar("role",25)
+    private val fio = UsersModel.varchar("fio",50)
 
     fun insert(userDTO: UserDTO){
         transaction {
@@ -19,6 +20,7 @@ object UsersModel: Table("users") {
                 it[password] = userDTO.password
                 it[groupID] = userDTO.groupID
                 it[role] = userDTO.role
+                it[fio] = userDTO.fio
             }
         }
     }
@@ -31,12 +33,35 @@ object UsersModel: Table("users") {
                     login = userModel[UsersModel.login],
                     password = userModel[password],
                     groupID = userModel[groupID],
-                    role = userModel[role]
+                    role = userModel[role],
+                    fio = userModel[fio]
                 )
             }
         }catch (e:Exception){
             null
         }
+    }
 
+    fun fetchUserByGroup(group:String):MutableList<UserDTO>{
+        val usersList : MutableList<UserDTO> = mutableListOf()
+        try{
+            transaction {
+                val userModel = UsersModel.select { UsersModel.groupID.eq(group) }
+                userModel.forEach{
+                    usersList.add(
+                        UserDTO(
+                            login = it[login],
+                            password = it[password],
+                            groupID = it[groupID],
+                            role = it[role],
+                            fio = it[fio]
+                        )
+                    )
+                }
+            }
+        }catch (e:Exception){
+            null
+        }
+        return usersList
     }
 }
