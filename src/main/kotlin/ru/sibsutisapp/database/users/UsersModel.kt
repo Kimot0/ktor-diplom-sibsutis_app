@@ -46,7 +46,7 @@ object UsersModel: Table("users") {
         val usersList : MutableList<UserDTO> = mutableListOf()
         try{
             transaction {
-                val userModel = UsersModel.select { UsersModel.groupID.eq(group) }
+                val userModel = UsersModel.select { groupID.eq(group) }
                 userModel.forEach{
                     usersList.add(
                         UserDTO(
