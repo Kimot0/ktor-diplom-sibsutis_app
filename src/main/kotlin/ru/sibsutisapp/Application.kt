@@ -8,6 +8,7 @@ import ru.sibsutisapp.features.Groups.configureGroupRouting
 import ru.sibsutisapp.features.News.configureNewsRouting
 import ru.sibsutisapp.features.Schedule.configureScheduleRouting
 import ru.sibsutisapp.features.login.configureLoginRouting
+import ru.sibsutisapp.features.teacher.configureTeacherRouting
 import ru.sibsutisapp.plugins.*
 
 fun main() {
@@ -23,4 +24,5 @@ fun Application.module() {
     configureNewsRouting()
     configureSerialization()
     configureGroupRouting()
+    configureTeacherRouting()
 }

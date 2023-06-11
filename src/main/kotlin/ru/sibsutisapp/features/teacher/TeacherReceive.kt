@@ -1,9 +1,8 @@
-package ru.sibsutisapp.database.Group
+package ru.sibsutisapp.features.teacher
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-class GroupDTO(
-    val id: Int,
+data class TeacherReceive(
     val groupID:String
 )
