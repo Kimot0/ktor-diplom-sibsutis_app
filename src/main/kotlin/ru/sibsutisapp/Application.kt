@@ -5,6 +5,7 @@ import io.ktor.server.engine.*
 import io.ktor.server.cio.*
 import org.jetbrains.exposed.sql.Database
 import ru.sibsutisapp.features.Groups.configureGroupRouting
+import ru.sibsutisapp.features.ListOfAttandance.configureListOfAttandanceRouting
 import ru.sibsutisapp.features.News.configureNewsRouting
 import ru.sibsutisapp.features.Schedule.configureScheduleRouting
 import ru.sibsutisapp.features.login.configureLoginRouting
@@ -25,4 +26,5 @@ fun Application.module() {
     configureSerialization()
     configureGroupRouting()
     configureTeacherRouting()
+    configureListOfAttandanceRouting()
 }
