@@ -7,10 +7,10 @@ import io.ktor.server.routing.*
 import ru.sibsutisapp.database.Attendance.AttendanceDTO
 import ru.sibsutisapp.database.Attendance.AttendanceModel
 
-fun Application.configureListOfAttandanceRouting() {
+fun Application.configureListOfAttendanceRouting() {
     routing {
         post("/sendlist") {
-            val receiveHeadList = call.receive<ListOfAttandanceRemote>()
+            val receiveHeadList = call.receive<ListOfAttendanceRemote>()
             val result = AttendanceModel.insertInDb(receiveHeadList)
             call.respondText(result)
         }

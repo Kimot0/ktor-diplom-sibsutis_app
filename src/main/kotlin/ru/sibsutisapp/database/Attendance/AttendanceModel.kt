@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
-import ru.sibsutisapp.features.ListOfAttandance.ListOfAttandanceRemote
+import ru.sibsutisapp.features.ListOfAttandance.ListOfAttendanceRemote
 import ru.sibsutisapp.features.ListOfAttandance.TeacherFioReceive
 
 object AttendanceModel : Table("sendheadlist") {
@@ -21,7 +21,7 @@ object AttendanceModel : Table("sendheadlist") {
 
     fun random(): Int = Math.random().toInt()
 
-    fun insertInDb(list: ListOfAttandanceRemote): String {
+    fun insertInDb(list: ListOfAttendanceRemote): String {
         var result = ""
         var stringTemp = ""
         try {

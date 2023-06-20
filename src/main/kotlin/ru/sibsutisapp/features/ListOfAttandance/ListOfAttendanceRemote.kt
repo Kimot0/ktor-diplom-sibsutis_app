@@ -3,7 +3,7 @@ package ru.sibsutisapp.features.ListOfAttandance
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ListOfAttandanceRemote (
+data class ListOfAttendanceRemote (
     val id: Int,
     val group: String,
     val discipline: String,
